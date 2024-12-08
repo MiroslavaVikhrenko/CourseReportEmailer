@@ -25,7 +25,7 @@ namespace CourseReportEmailer.Workers
 
 
 
-            NetworkCredential credentials = new NetworkCredential("m.vikhrenko+test@gmail.com", "password_placeholder"); //using System.Net
+            NetworkCredential credentials = new NetworkCredential("m.vikhrenko+test@gmail.com", "Password_placeholder"); //using System.Net
             client.EnableSsl = true; //Secure Sockets Layer = this will ensure our info goes to the server in the secure manner
                                      //it will create a secure connection between our client and smtp server '
                                      //and while they are communication will go securely through
