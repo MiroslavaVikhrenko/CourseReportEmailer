@@ -80,6 +80,42 @@ namespace CourseReportEmailer.Workers
                                                //you can similarly add more sheets here to the list
 
                 //next we put the data to the table on the worksheet
+
+                //first let's create title columns
+                Row excelTitleRow = new Row(); //the Row object comes from DocumentFormat.OpenXml.Spreadsheet
+
+                //go through columns in enrollmentsTable to create a header
+                foreach (DataColumn tableColumn in enrollmentsTable.Columns)
+                {
+                    Cell cell = new Cell(); //create a cell object that comes from DocumentFormat.OpenXml.Spreadsheet
+                    cell.DataType = CellValues.String; //we are sayng what type of the cell will be
+                    cell.CellValue = new CellValue(tableColumn.ColumnName); //what cell value it will be => taking the value from the column name
+
+                    excelTitleRow.Append(cell); //add that cell to our excel title row (= our header row) like First name, Last name, Id, etc
+                }
+
+                //add a new row on that sheet - sheetData has all data
+                sheetData.AppendChild(excelTitleRow); //add the first row that we will see (title row)
+
+                //next we need to add an actual info
+                foreach (DataRow tableRow in enrollmentsTable.Rows)
+                {
+                    //grad the row
+                    Row excelNewRow = new Row();
+                    foreach (DataColumn tableColumn in enrollmentsTable.Columns)
+                    {
+                        //here we try to find an intersection between row and column so that we can find the cell value
+                        Cell cell = new Cell();
+                        cell.DataType = CellValues.String;
+                        cell.CellValue = new CellValue(tableRow[tableColumn.ColumnName].ToString());
+                        excelNewRow.AppendChild(cell);
+                    }
+
+                    //each row needs to be put in sheet data 
+                    sheetData.AppendChild(excelNewRow);
+                }
+
+                workbookPart.Workbook.Save(); //it will use the file name that we gave it originally and it's gonna save our workbook
             }
         }
     }
