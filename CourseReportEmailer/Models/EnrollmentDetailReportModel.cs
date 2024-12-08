@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseReportEmailer.Models
 {
-    internal class EnrollmentDetailReport
+    internal class EnrollmentDetailReportModel
     {
         public int EnrollmentId { get; set; }
         public string FirstName { get; set; }
