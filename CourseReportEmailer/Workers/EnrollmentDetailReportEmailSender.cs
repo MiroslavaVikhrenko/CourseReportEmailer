@@ -25,16 +25,16 @@ namespace CourseReportEmailer.Workers
 
 
 
-            NetworkCredential credentials = new NetworkCredential("m.vikhrenko+test@gmail.com", "Password_placeholder"); //using System.Net
+            NetworkCredential credentials = new NetworkCredential("email_address_placeholder", "password_placeholder"); //using System.Net
             client.EnableSsl = true; //Secure Sockets Layer = this will ensure our info goes to the server in the secure manner
-                                     //it will create a secure connection between our client and smtp server '
-                                     //and while they are communication will go securely through
+                                      //it will create a secure connection between our client and smtp server '
+                                      //and while they are communication will go securely through
             client.Credentials = credentials;
 
 
 
             //next create an actual message 
-            MailMessage message = new MailMessage("m.vikhrenko+test@gmail.com", "m.vikhrenko+test2@gmail.com"); //mail FROM and mail TO
+            MailMessage message = new MailMessage("email_address_placeholder", "recipients_email_address"); //mail FROM and mail TO
             message.Subject = "Enrollment Details Report"; //comes from requirements
             message.IsBodyHtml = true; //because we're gonna put some html code => it allows more flexibility than just a text
             message.Body = "Hi,<br><br>Attached please find the enrollemnt details report.<br><br>Please let me know if there are any questions.<br><br>Best,<br><br>Mira";
